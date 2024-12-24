@@ -14,7 +14,7 @@
             name="material-symbols:list"
             class="w-6 h-6 cursor-pointer"
           />
-          <span> Products </span>
+          <span>Products</span>
         </nuxt-link>
         <nuxt-link
           to="/cart"

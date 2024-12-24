@@ -16,6 +16,7 @@
         <div class="flex flex-col gap-2 p-4">
           <div class="text-lg font-semibold">{{ product.name }}</div>
           <div class="text-sm">{{ product.type }}</div>
+          <div class="text-sm">{{ product.gender }}</div>
           <div class="text-sm">{{ product.color }}</div>
           <div class="text-sm">{{ product.price }} {{ product.currency }}</div>
         </div>

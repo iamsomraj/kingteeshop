@@ -5,13 +5,17 @@
       :filter="form.filter"
       @update:filter="form.filter = $event"
     />
-    <products-container />
+    <products-container
+      :search="form.search"
+      @update:search="form.search = $event"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
 type FormData = {
   filter: Record<string, string[]>;
+  search: string;
 };
 const itemFilterCriteria = {
   Color: ['Red', 'Blue', 'Green'],
@@ -22,6 +26,7 @@ const itemFilterCriteria = {
 
 const form = reactive({
   filter: { Color: [], Gender: [], Price: [], Type: [] },
+  search: '',
 }) as FormData;
 </script>
 

@@ -5,13 +5,13 @@
   >
     <input
       type="text"
-      placeholder="Search products"
+      placeholder="Search for products"
       class="border rounded p-2 grow"
       v-model="searchTerm"
     />
     <button
       type="submit"
-      class="flex items-center rounded border px-4 py-2 gap-2 text-gray-400 font-medium hover:bg-gray-100"
+      class="search-button-container flex items-center rounded border px-4 py-2 gap-2 text-gray-400 font-medium hover:bg-gray-100"
     >
       <Icon
         name="material-symbols:search"

@@ -4,16 +4,18 @@
       :search="search"
       @update:search="$emit('update:search', $event)"
     />
-    <product-list />
+    <product-list :products="products" />
   </div>
 </template>
 
 <script setup lang="ts">
-import ProductSearch from '@/components/products/product-search.vue';
-import ProductList from '@/components/products/product-list.vue';
+import ProductSearch from '~/components/products/product-search.vue';
+import ProductList from '~/components/products/product-list.vue';
+import type { ProductItemType } from '~/pages/index.vue';
 
 defineProps<{
   search: string;
+  products: ProductItemType[];
 }>();
 
 const emit = defineEmits({

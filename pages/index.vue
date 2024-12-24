@@ -13,9 +13,18 @@
 </template>
 
 <script setup lang="ts">
-type FormData = {
+type FormDataType = {
   filter: Record<string, string[]>;
   search: string;
+};
+type ProductItemType = {
+  id: number;
+  imageURL: string;
+  name: string;
+  type: string;
+  price: number;
+  currency: string;
+  color: string;
 };
 const itemFilterCriteria = {
   Color: ['Red', 'Blue', 'Green'],
@@ -23,11 +32,11 @@ const itemFilterCriteria = {
   Price: ['0 - Rs 250', 'Rs 251 - 450', 'Rs 450'],
   Type: ['Polo', 'Hoodie', 'Basic'],
 };
-
 const form = reactive({
-  filter: { Color: [], Gender: [], Price: [], Type: [] },
-  search: '',
-}) as FormData;
+  filter: { Color: [], Gender: [], Price: [], Type: [] } as Record<string, string[]>,
+  search: '' as string,
+}) as FormDataType;
+const { data, status } = useFetch<ProductItemType[]>('https://geektrust.s3.ap-southeast-1.amazonaws.com/coding-problems/shopping-cart/catalogue.json');
 </script>
 
 <style scoped></style>

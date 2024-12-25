@@ -1,75 +1,58 @@
-# Nuxt Minimal Starter
+# King's Tee Shop - A Modern E-Commerce Web Application
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+King's Tee Shop is a modern e-commerce web application that allows users to browse, search, and filter a catalog of t-shirts. Users can add items to their shopping cart and view the total amount before proceeding to checkout. This is a frontend challenge project from [GeekTrust TeeRex Store](https://www.geektrust.com/coding/detailed/teerex-store).
 
-## Setup
+## Run Locally
 
-Make sure to install dependencies:
+To run the application locally, follow these steps:
+
+- Open Terminal
+
+- Clone the Repository
 
 ```bash
-# npm
-npm install
+git clone https://github.com/iamsomraj/kingteeshop.git
+```
 
-# pnpm
-pnpm install
+- Go to the Root Directory of the Project
 
-# yarn
-yarn install
+```bash
+cd kingteeshop
+```
 
-# bun
+- Install Dependencies
+
+```bash
 bun install
 ```
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
+- Run the Application
 
 ```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
 bun run dev
 ```
 
-## Production
+## Features
 
-Build the application for production:
+- **Browse the Catalog**: View a product listing page with t-shirts displayed as cards. Each card includes an image, name, and price.
+- **Search**: Use free-text search to filter products by attributes such as name, color, or type (e.g., "green polo").
+- **Filter**: Narrow down results by gender, color, price range, or type.
+- **Add to Cart**: Select one or more t-shirts to add to your shopping cart.
+- **View Cart**: Access the shopping cart via the icon, where you can:
+  - Increase quantity
+  - Remove items
+  - View the total amount.
 
-```bash
-# npm
-npm run build
+## Developer
 
-# pnpm
-pnpm build
+LinkedIn : [Somraj Mukherjee](https://www.linkedin.com/in/iamsomraj/) 😊
 
-# yarn
-yarn build
+Portfolio: [Somraj's Portfolio](https://portfolio-iamsomraj.vercel.app/) 😊
 
-# bun
-bun run build
-```
+## Show Your Support
 
-Locally preview production build:
+Give me a star ⭐ if this project helped you! 👦 👧
 
-```bash
-# npm
-npm run preview
+## License
 
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+[GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.html)

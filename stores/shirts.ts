@@ -42,7 +42,7 @@ export const useShirtStore = defineStore('shirtStore', () => {
           quantityInCart: cart.value.filter((product) => product.id === cartProduct.id).length,
         };
       })
-      .filter((product, index, self) => self.findIndex((p) => p.id === product.id) === index);
+      .filter((product, index, self) => self.findIndex((p) => p.id === product.id) === index) as CartItemType[];
   });
 
   const setForm = ({ filter, search }: { filter?: typeof form.filter; search?: typeof form.search }) => {
@@ -54,7 +54,7 @@ export const useShirtStore = defineStore('shirtStore', () => {
     }
   };
 
-  const addToCart = (product: CartItemType) => {
+  const addToCart = (product: ProductItemType) => {
     const existingSameProductsInCart = cart.value.filter((cartProduct) => cartProduct.id === product.id);
     const canBeAdded = existingSameProductsInCart.length < product.quantity;
     if (!canBeAdded) {
@@ -63,7 +63,7 @@ export const useShirtStore = defineStore('shirtStore', () => {
     cart.value = [...cart.value, { ...product }];
   };
 
-  const removeFromCart = (product: CartItemType) => {
+  const removeFromCart = (product: ProductItemType) => {
     const productIndex = cart.value.findIndex((cartProduct) => cartProduct.id === product.id);
     if (productIndex === -1) {
       return;
@@ -71,7 +71,7 @@ export const useShirtStore = defineStore('shirtStore', () => {
     cart.value = cart.value.filter((_, index) => index !== productIndex);
   };
 
-  const deleteFromCart = (product: CartItemType) => {
+  const deleteFromCart = (product: ProductItemType) => {
     cart.value = cart.value.filter((cartProduct) => cartProduct.id !== product.id);
   };
 

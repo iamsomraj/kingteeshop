@@ -1,15 +1,15 @@
 <template>
   <div class="flex gap-10">
     <filters
-      :criteria="shirtsStore.itemFilterCriteria"
-      :filter="shirtsStore.form.filter"
+      :criteria="shirtStore.itemFilterCriteria"
+      :filter="shirtStore.form.filter"
       @update:filter="updateFilter"
     />
     <client-only>
       <products-container
-        :products="shirtsStore.products"
-        :filtered-products="shirtsStore.filteredProducts"
-        :search="shirtsStore.form.search"
+        :products="shirtStore.products"
+        :filtered-products="shirtStore.filteredProducts"
+        :search="shirtStore.form.search"
         @update:search="updateSearch"
         @add:cart="updateCart"
       />
@@ -19,22 +19,22 @@
 
 <script setup lang="ts">
 import type { ProductItemType } from '~/types';
-const shirtsStore = useShirtStore();
+const shirtStore = useShirtStore();
 
 const updateFilter = (filter: Record<string, string[]>) => {
-  shirtsStore.setForm({
+  shirtStore.setForm({
     filter,
   });
 };
 
 const updateSearch = (search: string) => {
-  shirtsStore.setForm({
+  shirtStore.setForm({
     search,
   });
 };
 
 const updateCart = (product: ProductItemType) => {
-  shirtsStore.addToCart(product);
+  shirtStore.addToCart(product);
 };
 </script>
 

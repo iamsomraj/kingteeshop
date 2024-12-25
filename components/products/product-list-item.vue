@@ -25,7 +25,15 @@
             name="material-symbols:add-shopping-cart"
             class="w-6 h-6 cursor-pointer"
           />
-          <span>Add to Cart</span>
+          <span class="flex items-center gap-2">
+            Add to Cart
+            <span
+              v-if="quantityInCart > 0"
+              class="text-xs font-semibold text-gray-500"
+            >
+              ({{ quantityInCart }})
+            </span>
+          </span>
         </button>
       </div>
     </div>
@@ -40,6 +48,12 @@ const props = defineProps<{
 
 const emit = defineEmits({
   'add:cart': (value: ProductItemType) => true,
+});
+
+const shirtStore = useShirtStore();
+
+const quantityInCart = computed(() => {
+  return shirtStore.computedCart.find((cart) => cart.id === props.product.id)?.quantityInCart || 0;
 });
 
 const addToCartHandler = () => {

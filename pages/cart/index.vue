@@ -1,15 +1,15 @@
 <template>
   <div
-    v-if="shirtsStore.cart.length > 0"
+    v-if="shirtStore.cart.length > 0"
     class="flex flex-col gap-4"
   >
     <cart-item
-      v-for="cart in shirtsStore.computedCart"
+      v-for="cart in shirtStore.computedCart"
       :key="cart.id"
       :cart="cart"
-      @add:cart="shirtsStore.addToCart"
-      @remove:cart="shirtsStore.removeFromCart"
-      @delete:cart="shirtsStore.deleteFromCart"
+      @add:cart="shirtStore.addToCart"
+      @remove:cart="shirtStore.removeFromCart"
+      @delete:cart="shirtStore.deleteFromCart"
     />
   </div>
   <div
@@ -25,7 +25,7 @@
 </template>
 
 <script setup lang="ts">
-const shirtsStore = useShirtStore();
+const shirtStore = useShirtStore();
 </script>
 
 <style scoped></style>

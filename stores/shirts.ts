@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 import { computed, reactive } from 'vue';
 import type { ColorType, FormDataType, GenderType, PriceType, ProductItemType, ShirtType } from '~/types';
 
-export const useShirtStore = defineStore('shirtsStore', () => {
+export const useShirtStore = defineStore('shirtStore', () => {
   const { data: products } = useFetch<ProductItemType[]>('https://geektrust.s3.ap-southeast-1.amazonaws.com/coding-problems/shopping-cart/catalogue.json');
 
   const itemFilterCriteria = {

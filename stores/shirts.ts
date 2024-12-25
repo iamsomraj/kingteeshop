@@ -1,6 +1,6 @@
+import type { CartItemType, ColorType, FormDataType, GenderType, PriceType, ProductItemType, ShirtType } from '~/types';
 import { defineStore } from 'pinia';
 import { computed, reactive } from 'vue';
-import type { ColorType, FormDataType, GenderType, PriceType, ProductItemType, ShirtType } from '~/types';
 
 export const useShirtStore = defineStore('shirtStore', () => {
   const { data: products } = useFetch<ProductItemType[]>('https://geektrust.s3.ap-southeast-1.amazonaws.com/coding-problems/shopping-cart/catalogue.json');
@@ -54,7 +54,7 @@ export const useShirtStore = defineStore('shirtStore', () => {
     }
   };
 
-  const addToCart = (product: ProductItemType) => {
+  const addToCart = (product: CartItemType) => {
     const existingSameProductsInCart = cart.value.filter((cartProduct) => cartProduct.id === product.id);
     const canBeAdded = existingSameProductsInCart.length < product.quantity;
     if (!canBeAdded) {
@@ -63,7 +63,7 @@ export const useShirtStore = defineStore('shirtStore', () => {
     cart.value = [...cart.value, { ...product }];
   };
 
-  const removeFromCart = (product: ProductItemType) => {
+  const removeFromCart = (product: CartItemType) => {
     const productIndex = cart.value.findIndex((cartProduct) => cartProduct.id === product.id);
     if (productIndex === -1) {
       return;
@@ -71,7 +71,7 @@ export const useShirtStore = defineStore('shirtStore', () => {
     cart.value = cart.value.filter((_, index) => index !== productIndex);
   };
 
-  const deleteFromCart = (product: ProductItemType) => {
+  const deleteFromCart = (product: CartItemType) => {
     cart.value = cart.value.filter((cartProduct) => cartProduct.id !== product.id);
   };
 

@@ -1,5 +1,5 @@
 <template>
-  <nav class="border-b">
+  <nav class="border-b sticky top-0 z-10 bg-white">
     <div class="container mx-auto flex justify-between items-center p-4">
       <div class="text-2xl font-bold">
         <nuxt-link to="/">King's Tee Shop</nuxt-link>

@@ -15,4 +15,6 @@ export type ProductItemType = {
   currency: string;
   color: ColorType;
   gender: GenderType;
+  quantity: number;
 };
+export type CartItemType = ProductItemType & { quantityInCart: number };

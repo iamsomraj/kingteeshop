@@ -1,36 +1,25 @@
 <template>
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-    <div
+    <product-list-item
       v-for="product in products"
       :key="product.id"
-      class="flex flex-col gap-4 border rounded"
-    >
-      <div class="flex flex-col gap-4 divide-y">
-        <div class="mx-auto p-4">
-          <img
-            :src="product.imageURL"
-            :alt="product.name"
-            class="w-64 h-64 object-cover rounded-lg"
-          />
-        </div>
-        <div class="flex flex-col gap-2 p-4">
-          <div class="text-lg font-semibold">{{ product.name }}</div>
-          <div class="text-sm">{{ product.type }}</div>
-          <div class="text-sm">{{ product.gender }}</div>
-          <div class="text-sm">{{ product.color }}</div>
-          <div class="text-sm">{{ product.price }} {{ product.currency }}</div>
-        </div>
-      </div>
-    </div>
+      :product="product"
+      @add:cart="$emit('add:cart', $event)"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
+import productListItem from '~/components/products/product-list-item.vue';
 import type { ProductItemType } from '~/types';
 
 defineProps<{
   products: ProductItemType[];
 }>();
+
+defineEmits({
+  'add:cart': (value: ProductItemType) => true,
+});
 </script>
 
 <style scoped></style>

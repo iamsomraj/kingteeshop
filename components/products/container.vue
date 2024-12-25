@@ -7,7 +7,10 @@
       />
       <span class="text-gray-500 font-medium text-right text-sm w-full">Showing {{ filteredProducts.length }} products out of {{ products.length }}</span>
     </div>
-    <product-list :products="filteredProducts" />
+    <product-list
+      :products="filteredProducts"
+      @add:cart="$emit('add:cart', $event)"
+    />
   </div>
 </template>
 
@@ -24,6 +27,7 @@ defineProps<{
 
 const emit = defineEmits({
   'update:search': (value: string) => true,
+  'add:cart': (value: ProductItemType) => true,
 });
 </script>
 

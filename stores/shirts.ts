@@ -2,19 +2,21 @@ import { defineStore } from 'pinia';
 import { computed, reactive } from 'vue';
 import type { ColorType, FormDataType, GenderType, PriceType, ProductItemType, ShirtType } from '~/types';
 
-export const useProductsStore = defineStore('productsStore', () => {
+export const useShirtStore = defineStore('shirtsStore', () => {
+  const { data: products } = useFetch<ProductItemType[]>('https://geektrust.s3.ap-southeast-1.amazonaws.com/coding-problems/shopping-cart/catalogue.json');
+
   const itemFilterCriteria = {
     Color: ['Red', 'Blue', 'Green'] as ColorType[],
     Gender: ['Men', 'Women'] as GenderType[],
     Price: ['0-Rs250', 'Rs251-450', 'Rs 450'] as PriceType[],
     Type: ['Polo', 'Hoodie', 'Basic'] as ShirtType[],
   };
+  const cart = ref([] as ProductItemType[]);
   const form = reactive({
     filter: { Color: [], Gender: [], Price: [], Type: [] } as Record<string, string[]>,
     search: '' as string,
   }) as FormDataType;
 
-  const { data: products } = useFetch<ProductItemType[]>('https://geektrust.s3.ap-southeast-1.amazonaws.com/coding-problems/shopping-cart/catalogue.json');
   const filteredProducts = computed(() => {
     return (products?.value || []).filter((product) => {
       const search = form.search.toLowerCase();
@@ -32,6 +34,17 @@ export const useProductsStore = defineStore('productsStore', () => {
     });
   });
 
+  const computedCart = computed(() => {
+    return cart.value
+      .map((cartProduct) => {
+        return {
+          ...cartProduct,
+          quantityInCart: cart.value.filter((product) => product.id === cartProduct.id).length,
+        };
+      })
+      .filter((product, index, self) => self.findIndex((p) => p.id === product.id) === index);
+  });
+
   const setForm = ({ filter, search }: { filter?: typeof form.filter; search?: typeof form.search }) => {
     if (filter) {
       form.filter = { ...form.filter, ...filter };
@@ -41,11 +54,37 @@ export const useProductsStore = defineStore('productsStore', () => {
     }
   };
 
+  const addToCart = (product: ProductItemType) => {
+    const existingSameProductsInCart = cart.value.filter((cartProduct) => cartProduct.id === product.id);
+    const canBeAdded = existingSameProductsInCart.length < product.quantity;
+    if (!canBeAdded) {
+      return;
+    }
+    cart.value = [...cart.value, { ...product }];
+  };
+
+  const removeFromCart = (product: ProductItemType) => {
+    const productIndex = cart.value.findIndex((cartProduct) => cartProduct.id === product.id);
+    if (productIndex === -1) {
+      return;
+    }
+    cart.value = cart.value.filter((_, index) => index !== productIndex);
+  };
+
+  const deleteFromCart = (product: ProductItemType) => {
+    cart.value = cart.value.filter((cartProduct) => cartProduct.id !== product.id);
+  };
+
   return {
     itemFilterCriteria,
     form,
+    cart,
+    computedCart,
     products: products?.value || [],
     filteredProducts,
     setForm,
+    addToCart,
+    removeFromCart,
+    deleteFromCart,
   };
 });

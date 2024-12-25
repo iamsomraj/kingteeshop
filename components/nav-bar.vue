@@ -18,18 +18,26 @@
         </nuxt-link>
         <nuxt-link
           to="/cart"
-          class="flex items-center rounded border p-2 hover:bg-gray-100"
+          class="flex items-center rounded border p-2 relative hover:bg-gray-100"
         >
           <Icon
             name="material-symbols:add-shopping-cart"
             class="w-6 h-6 cursor-pointer"
           />
+          <span
+            v-if="productStore.cart.length > 0"
+            class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 text-sm flex items-center justify-center"
+          >
+            {{ productStore.cart.length }}
+          </span>
         </nuxt-link>
       </div>
     </div>
   </nav>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const productStore = useShirtStore();
+</script>
 
 <style scoped></style>

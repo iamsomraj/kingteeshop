@@ -18,7 +18,12 @@
           :checked="filter[item.key].includes(value)"
           @input="checkboxHandler(item.key, value)"
         />
-        <label :for="value">{{ value }}</label>
+        <label
+          :for="value"
+          class="shrink-0"
+        >
+          {{ value }}
+        </label>
       </div>
     </div>
   </div>

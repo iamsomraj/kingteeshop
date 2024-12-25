@@ -17,7 +17,7 @@
         name="material-symbols:search"
         class="w-6 h-6 cursor-pointer"
       />
-      <span>Search</span>
+      <span class="hidden sm:block">Search</span>
     </button>
   </form>
 </template>

@@ -1,10 +1,12 @@
 <template>
   <div class="flex gap-10">
-    <filters
-      :criteria="shirtStore.itemFilterCriteria"
-      :filter="shirtStore.form.filter"
-      @update:filter="updateFilter"
-    />
+    <div class="hidden sm:block">
+      <filters
+        :criteria="shirtStore.itemFilterCriteria"
+        :filter="shirtStore.form.filter"
+        @update:filter="updateFilter"
+      />
+    </div>
     <client-only>
       <products-container
         :products="shirtStore.products"

@@ -1,11 +1,31 @@
 <template>
   <div class="flex flex-col gap-4 w-full">
-    <div class="sm:flex justify-between items-center gap-6">
+    <div class="flex justify-between items-center gap-4">
       <product-search
         :search="search"
         @update:search="$emit('update:search', $event)"
       />
-      <span class="text-gray-500 font-medium text-right text-sm w-full">Showing {{ filteredProducts.length }} products out of {{ products.length }}</span>
+      <button
+        class="flex sm:hidden shrink-0 items-center rounded border px-4 py-2 gap-2 text-gray-400 font-medium hover:bg-gray-100"
+        @click="toggleFilter"
+      >
+        <Icon
+          name="material-symbols:filter-alt"
+          class="w-6 h-6 cursor-pointer"
+          :class="{
+            'text-gray-400': !showFilter,
+            'text-gray-600': showFilter,
+          }"
+        />
+      </button>
+    </div>
+    <div class="block sm:hidden">
+      <filters
+        v-if="showFilter"
+        :criteria="shirtStore.itemFilterCriteria"
+        :filter="shirtStore.form.filter"
+        @update:filter="updateFilter"
+      />
     </div>
     <product-list
       :products="filteredProducts"
@@ -29,6 +49,20 @@ const emit = defineEmits({
   'update:search': (value: string) => true,
   'add:cart': (value: ProductItemType) => true,
 });
+
+const shirtStore = useShirtStore();
+
+const showFilter = ref(false);
+
+const toggleFilter = () => {
+  showFilter.value = !showFilter.value;
+};
+
+const updateFilter = (filter: Record<string, string[]>) => {
+  shirtStore.setForm({
+    filter,
+  });
+};
 </script>
 
 <style scoped></style>

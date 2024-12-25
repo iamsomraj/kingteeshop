@@ -1,6 +1,6 @@
 <template>
   <form
-    class="flex items-center justify-start gap-4"
+    class="flex items-center justify-start gap-4 w-full"
     @submit.prevent="searchHandler"
   >
     <input

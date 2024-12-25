@@ -26,7 +26,7 @@
 </template>
 
 <script setup lang="ts">
-import type { ProductItemType } from '~/pages/index.vue';
+import type { ProductItemType } from '~/types';
 
 defineProps<{
   products: ProductItemType[];

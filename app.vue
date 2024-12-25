@@ -7,6 +7,16 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+useHead({
+  title: "King's Tee Shop",
+  meta: [
+    {
+      name: 'description',
+      content: "King's Tee Shop is a modern e-commerce web application that allows users to browse, search, and filter a catalog of t-shirts.",
+    },
+  ],
+});
+</script>
 
 <style scoped></style>

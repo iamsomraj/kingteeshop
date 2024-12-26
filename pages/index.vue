@@ -1,11 +1,7 @@
 <template>
   <div class="flex gap-10">
     <div class="hidden sm:block">
-      <filters
-        :criteria="shirtStore.itemFilterCriteria"
-        :filter="shirtStore.form.filter"
-        @update:filter="updateFilter"
-      />
+      <filters />
     </div>
     <client-only>
       <products-container
@@ -22,12 +18,6 @@
 <script setup lang="ts">
 import type { ProductItemType } from '~/types';
 const shirtStore = useShirtStore();
-
-const updateFilter = (filter: Record<string, string[]>) => {
-  shirtStore.setForm({
-    filter,
-  });
-};
 
 const updateSearch = (search: string) => {
   shirtStore.setForm({

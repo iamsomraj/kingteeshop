@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col gap-4">
     <div
-      v-for="item in filters"
+      v-for="item in checkboxFilters"
       :key="item.key"
       class="flex flex-col gap-2 items-start"
     >
@@ -15,7 +15,7 @@
           type="checkbox"
           :id="value"
           :value="value"
-          :checked="filter[item.key].includes(value)"
+          :checked="shirtStore.form.filter[item.key].includes(value)"
           @input="checkboxHandler(item.key, value)"
         />
         <label
@@ -30,17 +30,10 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{
-  criteria: Record<string, string[]>;
-  filter: Record<string, string[]>;
-}>();
+const shirtStore = useShirtStore();
 
-const emit = defineEmits({
-  'update:filter': (value: Record<string, string[]>) => true,
-});
-
-const filters = computed(() => {
-  return Object.entries(props.criteria).map(([key, values]) => {
+const checkboxFilters = computed(() => {
+  return Object.entries(shirtStore.itemFilterCriteria).map(([key, values]) => {
     return {
       key,
       values,
@@ -49,18 +42,24 @@ const filters = computed(() => {
 });
 
 const checkboxHandler = (key: string, value: string) => {
-  const index = props.filter[key].indexOf(value);
+  const index = shirtStore.form.filter[key].indexOf(value);
   if (index === -1) {
-    emit('update:filter', {
-      ...props.filter,
-      [key]: [...props.filter[key], value],
+    updateFilter({
+      ...shirtStore.form.filter,
+      [key]: [...shirtStore.form.filter[key], value],
     });
   } else {
-    emit('update:filter', {
-      ...props.filter,
-      [key]: props.filter[key].filter((_, i) => i !== index),
+    updateFilter({
+      ...shirtStore.form.filter,
+      [key]: shirtStore.form.filter[key].filter((_, i) => i !== index),
     });
   }
+};
+
+const updateFilter = (filter: Record<string, string[]>) => {
+  shirtStore.setForm({
+    filter,
+  });
 };
 </script>
 

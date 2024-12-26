@@ -4,30 +4,11 @@
       <filters />
     </div>
     <client-only>
-      <products-container
-        :products="shirtStore.products"
-        :filtered-products="shirtStore.filteredProducts"
-        :search="shirtStore.form.search"
-        @update:search="updateSearch"
-        @add:cart="updateCart"
-      />
+      <products-container />
     </client-only>
   </div>
 </template>
 
-<script setup lang="ts">
-import type { ProductItemType } from '~/types';
-const shirtStore = useShirtStore();
-
-const updateSearch = (search: string) => {
-  shirtStore.setForm({
-    search,
-  });
-};
-
-const updateCart = (product: ProductItemType) => {
-  shirtStore.addToCart(product);
-};
-</script>
+<script setup lang="ts"></script>
 
 <style scoped></style>
